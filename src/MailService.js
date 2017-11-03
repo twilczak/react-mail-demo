@@ -11,6 +11,26 @@ export class MailService {
             .catch(this.handleError);
     }
 
+    static getMessage(mailbox, id) {
+        const url = `${this.hostUrl}/${mailbox}`;
+        return axios
+            .get(url)
+            .then(response => {
+                return response.data.find(message => message.id === id);
+            })
+            .catch(this.handleError);
+    }
+
+    static deleteMessage(mailbox, id) {
+        const url = `${this.hostUrl}/${mailbox}/${id}`;
+        return axios
+            .delete(url)
+            .then(response => {
+                console.log(response);
+            })
+            .catch(this.handleError);
+    }
+
     static handleError(error) {
         console.error(error);
     }

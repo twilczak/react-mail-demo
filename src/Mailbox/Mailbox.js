@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom';
 
 import './Mailbox.css';
 
@@ -6,6 +7,7 @@ import { MailService } from "../MailService";
 
 import { MailboxControls } from "./MailboxControls/MailboxControls";
 import { MailboxList } from "./MailboxList/MailboxList";
+import { MessageReader } from "../MessageReader/MessageReader";
 
 export class Mailbox extends Component {
 
@@ -29,7 +31,7 @@ export class Mailbox extends Component {
         this.setState({messages: []});
         MailService
             .getMessages(path)
-            .then((response) => this.setState({messages: response.data}));
+            .then(({data}) => this.setState({messages: data}));
     }
 
     render() {
@@ -40,6 +42,11 @@ export class Mailbox extends Component {
                 <MailboxList match={this.props.match} messages={this.state.messages}/>
 
                 <hr className="mailbox-border"/>
+
+                <Switch>
+                    <Route exact path="/inbox/view/:messageId" component={MessageReader}/>
+                    <Route exact path="/outbox/view/:messageId" component={MessageReader}/>
+                </Switch>
 
             </section>
         );
