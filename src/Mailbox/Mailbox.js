@@ -8,6 +8,7 @@ import { MailService } from "../MailService";
 import { MailboxControls } from "./MailboxControls/MailboxControls";
 import { MailboxList } from "./MailboxList/MailboxList";
 import { MessageReader } from "../MessageReader/MessageReader";
+import { MessageComposer } from "../MessageComposer/MessageComposer";
 
 export class Mailbox extends Component {
 
@@ -46,6 +47,9 @@ export class Mailbox extends Component {
                 <Switch>
                     <Route exact path="/inbox/view/:messageId" component={MessageReader}/>
                     <Route exact path="/outbox/view/:messageId" component={MessageReader}/>
+
+                    <Route exact path="/inbox/compose" component={MessageComposer}/>
+                    <Route exact path="/outbox/compose" component={MessageComposer}/>
                 </Switch>
 
             </section>
