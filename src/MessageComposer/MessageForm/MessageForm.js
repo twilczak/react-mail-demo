@@ -29,21 +29,8 @@ export class MessageForm extends Component {
         }
     }
 
-    //TODO: move this logic to mailservice...
-    zeroPad(value) {
-        return value > 9 ?  '' + value : '0' + value;
-    }
-
-    getDateSent(date = new Date()) {
-        const day = this.zeroPad(date.getDate());
-        const month = this.zeroPad(date.getMonth() + 1);
-        const year = date.getFullYear();
-
-        return `${year}.${month}.${day}`;
-    }
-
     sendMessage() {
-        const message = {sender: 'Me', dateSent: this.getDateSent(), ...this.state};
+        const message = {sender: 'Me', ...this.state};
         this.props.onSend(message);
     }
 

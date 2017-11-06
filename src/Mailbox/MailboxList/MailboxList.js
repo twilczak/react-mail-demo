@@ -11,6 +11,20 @@ export class MailboxList extends Component {
         this.renderMessage = this.renderMessage.bind(this);
     }
 
+    componentDidUpdate() {
+        const url = this.props.location.pathname.split('/');
+        if(url.length > 2) {
+            this.scrollMessageIntoView(url[3]);
+        }
+    }
+
+    scrollMessageIntoView(messageId) {
+        const element = document.getElementById(messageId);
+        if( element ) {
+            element.scrollIntoView();
+        }
+    }
+
     renderHeader() {
         const recipientOrSender = this.props.match.path === '/inbox' ?
             <span className="sender">Sender</span>:
@@ -35,7 +49,7 @@ export class MailboxList extends Component {
             <span className="recipient">{message.recipient}</span>;
 
         return (
-            <li className="mailbox-list-item" key={message.id}>
+            <li className="mailbox-list-item" key={message.id} id={message.id}>
                 <NavLink to={this.props.match.path + "/view/" + message.id}
                          className="mailbox-item-link"
                          activeClassName="is-active">

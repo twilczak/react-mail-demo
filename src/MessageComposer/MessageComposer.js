@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import './MessageComposer.css';
 
+import { MailService } from "../MailService";
+
 import { MessageForm } from './MessageForm/MessageForm';
 
 export class MessageComposer extends Component {
@@ -13,7 +15,13 @@ export class MessageComposer extends Component {
     }
 
     onSend (message) {
-        console.log('onSend not yet implemented', message);
+        MailService
+            .sendMessage(message)
+            .then((message) => {
+                const mailbox = this.props.match.path.split('/')[1];
+                const destination = mailbox === 'inbox' ? '/inbox' : `/outbox/view/${message.id}`;
+                this.props.history.push(destination);
+            });
     }
 
     render() {
