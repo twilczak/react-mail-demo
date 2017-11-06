@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import './MessageReader.css'
 
 import { MailService } from "../MailService";
-import {MessageDetail} from "./MessageDetail/MessageDetail";
+import { MessageDetail } from "./MessageDetail/MessageDetail";
 
 export class MessageReader extends Component {
 
