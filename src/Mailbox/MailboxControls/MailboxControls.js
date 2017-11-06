@@ -12,5 +12,5 @@ export class MailboxControls extends Component {
                 <Link to={this.props.match.path + "/compose"} className="mailbox-button">Compose</Link>
             </div>
         );
-    }s
+    }
 }
