@@ -1,8 +1,15 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'enzyme';
+
+import { MemoryRouter } from 'react-router-dom';
+
 import App from './App';
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
+
+    render (
+      <MemoryRouter initialEntries={['/']}>
+        <App />
+      </MemoryRouter>
+    );
 });
