@@ -40,7 +40,7 @@ export class Mailbox extends Component {
             <section className="mailbox">
 
                 <MailboxControls match={this.props.match}/>
-                <MailboxList match={this.props.match} location={this.props.history.location} messages={this.state.messages}/>
+                <MailboxList match={this.props.match} location={this.props.location} messages={this.state.messages}/>
 
                 <hr className="mailbox-border"/>
 
