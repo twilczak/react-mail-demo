@@ -8,7 +8,7 @@ export class MailService {
         const url = `${this.hostUrl}/` + mailbox.split('/').join('');
         return axios
             .get(url)
-            .catch(this.handleError);
+            .then((response) => response.data);
     }
 
     static getMessage(mailbox, id) {
@@ -17,15 +17,14 @@ export class MailService {
             .get(url)
             .then(response => {
                 return response.data.find(message => message.id === id);
-            })
-            .catch(this.handleError);
+            });
     }
 
     static deleteMessage(mailbox, id) {
         const url = `${this.hostUrl}/${mailbox}/${id}`;
         return axios
             .delete(url)
-            .catch(this.handleError);
+            .then((response) => response.data);
     }
 
     static sendMessage(message) {
@@ -34,11 +33,7 @@ export class MailService {
 
         return axios
             .post(url, message)
-            .then(response => {
-                console.log(response);
-                return response.data;
-            })
-            .catch(this.handleError);
+            .then(response => response.data);
     }
 
     static zeroPad(value) {
@@ -51,9 +46,5 @@ export class MailService {
         const year = date.getFullYear();
 
         return `${year}.${month}.${day}`;
-    }
-
-    static handleError(error) {
-        console.error(error);
     }
 }

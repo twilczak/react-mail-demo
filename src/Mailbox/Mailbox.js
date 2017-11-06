@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import './Mailbox.css';
 
 import { MailService } from "../MailService";
+import { errorHandler } from "../errorHandler";
 
 import { MailboxControls } from "./MailboxControls/MailboxControls";
 import { MailboxList } from "./MailboxList/MailboxList";
@@ -32,7 +33,8 @@ export class Mailbox extends Component {
         this.setState({messages: []});
         MailService
             .getMessages(path)
-            .then(({data}) => this.setState({messages: data}));
+            .then((messages) => this.setState({messages: messages}))
+            .catch(errorHandler);
     }
 
     render() {

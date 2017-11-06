@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 import './MessageComposer.css';
 
-import { MailService } from "../MailService";
+import { MailService } from '../MailService';
+import { errorHandler } from '../errorHandler';
 
 import { MessageForm } from './MessageForm/MessageForm';
 
@@ -21,7 +22,8 @@ export class MessageComposer extends Component {
                 const mailbox = this.props.match.path.split('/')[1];
                 const destination = mailbox === 'inbox' ? '/inbox' : `/outbox/view/${message.id}`;
                 this.props.history.push(destination);
-            });
+            })
+            .catch(errorHandler);
     }
 
     render() {

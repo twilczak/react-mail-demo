@@ -4,6 +4,7 @@ import './MessageReader.css'
 
 import { MailService } from "../MailService";
 import { MessageDetail } from "./MessageDetail/MessageDetail";
+import { errorHandler } from "../errorHandler";
 
 export class MessageReader extends Component {
 
@@ -37,9 +38,8 @@ export class MessageReader extends Component {
 
         MailService
             .getMessage(mailbox, messageId)
-            .then(message => {
-                this.setState({message, loading: false});
-            });
+            .then(message => this.setState({message, loading: false}))
+            .catch(errorHandler);
     }
 
     onDelete(message) {
@@ -48,7 +48,8 @@ export class MessageReader extends Component {
 
         MailService
             .deleteMessage(mailbox, messageId)
-            .then(() => this.props.history.replace(`/${mailbox}`));
+            .then(() => this.props.history.replace(`/${mailbox}`))
+            .catch(errorHandler);
     }
 
     render() {
