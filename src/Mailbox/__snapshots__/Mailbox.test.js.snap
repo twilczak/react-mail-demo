@@ -22,24 +22,25 @@ exports[`class Mailbox extends _react.Component {
         this.setState({ messages: [] });
         _MailService.MailService.
         getMessages(path).
-        then(({ data }) => this.setState({ messages: data }));
+        then(messages => this.setState({ messages: messages })).
+        catch(_errorHandler.errorHandler);
     }
 
     render() {
         return (
-            _react2.default.createElement('section', { className: 'mailbox', __source: { fileName: _jsxFileName, lineNumber: 40 }, __self: this },
+            _react2.default.createElement('section', { className: 'mailbox', __source: { fileName: _jsxFileName, lineNumber: 42 }, __self: this },
 
-                _react2.default.createElement(_MailboxControls.MailboxControls, { match: this.props.match, __source: { fileName: _jsxFileName, lineNumber: 42 }, __self: this }),
-                _react2.default.createElement(_MailboxList.MailboxList, { match: this.props.match, location: this.props.location, messages: this.state.messages, __source: { fileName: _jsxFileName, lineNumber: 43 }, __self: this }),
+                _react2.default.createElement(_MailboxControls.MailboxControls, { match: this.props.match, __source: { fileName: _jsxFileName, lineNumber: 44 }, __self: this }),
+                _react2.default.createElement(_MailboxList.MailboxList, { match: this.props.match, location: this.props.location, messages: this.state.messages, __source: { fileName: _jsxFileName, lineNumber: 45 }, __self: this }),
 
-                _react2.default.createElement('hr', { className: 'mailbox-border', __source: { fileName: _jsxFileName, lineNumber: 45 }, __self: this }),
+                _react2.default.createElement('hr', { className: 'mailbox-border', __source: { fileName: _jsxFileName, lineNumber: 47 }, __self: this }),
 
-                _react2.default.createElement(_reactRouterDom.Switch, { __source: { fileName: _jsxFileName, lineNumber: 47 }, __self: this },
-                    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/inbox/view/:messageId', component: _MessageReader.MessageReader, __source: { fileName: _jsxFileName, lineNumber: 48 }, __self: this }),
-                    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/outbox/view/:messageId', component: _MessageReader.MessageReader, __source: { fileName: _jsxFileName, lineNumber: 49 }, __self: this }),
+                _react2.default.createElement(_reactRouterDom.Switch, { __source: { fileName: _jsxFileName, lineNumber: 49 }, __self: this },
+                    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/inbox/view/:messageId', component: _MessageReader.MessageReader, __source: { fileName: _jsxFileName, lineNumber: 50 }, __self: this }),
+                    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/outbox/view/:messageId', component: _MessageReader.MessageReader, __source: { fileName: _jsxFileName, lineNumber: 51 }, __self: this }),
 
-                    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/inbox/compose', component: _MessageComposer.MessageComposer, __source: { fileName: _jsxFileName, lineNumber: 51 }, __self: this }),
-                    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/outbox/compose', component: _MessageComposer.MessageComposer, __source: { fileName: _jsxFileName, lineNumber: 52 }, __self: this }))));
+                    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/inbox/compose', component: _MessageComposer.MessageComposer, __source: { fileName: _jsxFileName, lineNumber: 53 }, __self: this }),
+                    _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/outbox/compose', component: _MessageComposer.MessageComposer, __source: { fileName: _jsxFileName, lineNumber: 54 }, __self: this }))));
 
 
 
@@ -96,28 +97,6 @@ exports[`class Mailbox extends _react.Component {
       >
         Date
       </span>
-    </li>
-    <li
-      className="mailbox-list-item"
-      id="test"
-    >
-      <a
-        aria-current={false}
-        className="mailbox-item-link"
-        href="/inbox/view/test"
-        onClick={[Function]}
-        style={undefined}
-      >
-        <span
-          className="sender"
-        />
-        <span
-          className="subject"
-        />
-        <span
-          className="date-sent"
-        />
-      </a>
     </li>
   </ol>
   <hr
